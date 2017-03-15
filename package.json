@@ -1,0 +1,11 @@
+{
+  "name": "camper-leaderboard-sp",
+  "version": "1.0.0",
+  "description": "See a table of Free Code Camp campers who've earned the most brownie points",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sebastian Petak",
+  "license": "ISC"
+}
