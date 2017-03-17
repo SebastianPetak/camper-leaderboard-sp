@@ -3,12 +3,14 @@ const ReactRouter = require('react-router');
 const Router = ReactRouter.Router;
 const Route = ReactRouter.Route;
 const browserHistory = ReactRouter.browserHistory;
-var IndexRoute = ReactRouter.IndexRoute;
+const IndexRoute = ReactRouter.IndexRoute;
 const Main = require('../components/Main');
+const CamperLeaderboard = require('../containers/CamperLeaderboard');
 
 const routes = (
 	<Router history={browserHistory}>
 		<Route path='/' component={Main}>
+			<IndexRoute component={CamperLeaderboard} />
 		</Route>
 	</Router>
 );

@@ -1,13 +1,13 @@
 const React = require('react');
 
-module.exports = class Main extends React.Component {
+module.exports = class CamperLeaderboard extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 	render() {
 		return (
 			<div>
-				{this.props.children}
+				Camper Leaderboard
 			</div>
 		);
 	}
