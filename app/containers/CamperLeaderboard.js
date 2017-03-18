@@ -51,10 +51,14 @@ module.exports = class CamperLeaderboard extends React.Component {
 		return (
 			<div className='container'>
 				<div className='row'>
-					<LeaderboardHeading />
+					<div className='small-12 columns'>
+						<LeaderboardHeading />
+					</div>
 				</div>
 				<div className='row'>
-					<CamperTable leaderboardRows={leaderboardRows}/>
+					<div className='small-12 columns'>
+						<CamperTable leaderboardRows={leaderboardRows}/>
+					</div>
 				</div>
 			</div>
 		);

@@ -7,7 +7,7 @@ module.exports = class LeaderboardHeading extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>FreeCodeCamp Leaderboard <i className='fa fa-free-code-camp' ariaHidden='true'></i></h1>
+				<h1 style={{textAlign: 'center', margin: '1em'}}>FreeCodeCamp Leaderboard <i className='fa fa-free-code-camp' ariaHidden='true'></i></h1>
 			</div>
 		);
 	}
