@@ -8,34 +8,51 @@ module.exports = class CamperLeaderboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recentLeaderboard: {}
+			leaderboard: {}
 		};
 		let self = this;
 
-		// Get camper leaderboard data
-		axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
-		.then(function(result) {
-			self.setState({
-				recentLeaderboard: result.data
+		// Get camper recent leaderboard data
+		self.getRecentData = () => {
+			axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
+			.then(function(result) {
+				self.setState({
+					leaderboard: result.data
+				});
+			})
+			.catch(function(error) {
+				console.log('This is my catch error: ' + error);
 			});
-			console.log(result); // Using console due to winston not working with webpack
-			console.log(typeof(result));
-		})
-		.catch(function(error) {
-			console.log('This is my catch error: ' + error);
-		});
+		};
+		// Get new data for when user clicks 'All time points'
+		self.handleAllTimeClick = () => {
+			axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
+			.then(function(result) {
+				self.setState({
+					leaderboard: result.data
+				});
+			})
+			.catch(function(error) {
+				console.log('This is my catch error: ' + error);
+			});
+		};
+	}
+
+	// Load recent leaderboard data after component mounts
+	componentDidMount() {
+		this.getRecentData();
 	}
 
 	render() {
 		/*
-			If recentLeaderboard is empty, return null so camperTable renders without data.
-			Otherwise fill the table with the appropriate data from recentLeaderboard.
+			If leaderboard is empty, return null so camperTable renders without data.
+			Otherwise fill the table with the appropriate data from leaderboard.
 		*/
 		let leaderboardRows;
-		if (_.isEmpty(this.state.recentLeaderboard)) {
+		if (_.isEmpty(this.state.leaderboard)) {
 			leaderboardRows = null;
 		} else {
-			leaderboardRows = this.state.recentLeaderboard.map( (camperData, index) => {
+			leaderboardRows = this.state.leaderboard.map( (camperData, index) => {
 				return (
 					<tr key={index}>
 						<td>{index + 1}</td>
@@ -47,7 +64,6 @@ module.exports = class CamperLeaderboard extends React.Component {
 			});
 		}
 
-
 		return (
 			<div className='container'>
 				<div className='row'>
@@ -57,7 +73,11 @@ module.exports = class CamperLeaderboard extends React.Component {
 				</div>
 				<div className='row'>
 					<div className='small-12 columns'>
-						<CamperTable leaderboardRows={leaderboardRows}/>
+						<CamperTable
+							leaderboardRows={leaderboardRows}
+							handleAllTimeClick={this.handleAllTimeClick}
+							getRecentData={this.getRecentData}
+						/>
 					</div>
 				</div>
 			</div>

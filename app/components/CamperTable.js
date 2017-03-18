@@ -12,8 +12,8 @@ module.exports = class CamperTable extends React.Component {
 						<tr>
 							<th width='5%'>#</th>
 							<th width='35%'>Camper</th>
-							<th width='30%'>Points in past 30 days</th>
-							<th width='30%'>All time points</th>
+							<th width='30%'><a href='#' onClick={this.props.getRecentData}>Points in past 30 days</a></th>
+							<th width='30%'><a href='#' onClick={this.props.handleAllTimeClick}>All time points</a></th>
 						</tr>
 					</thead>
 					<tbody>
