@@ -8,14 +8,15 @@ module.exports = class CamperLeaderboard extends React.Component {
 		this.State = {
 			recentLeaderboard: {}
 		};
+		let self = this;
 
 		axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
 		.then(function(result) {
-			this.setState({
+			self.setState({
 				recentLeaderboard: result
 			});
-			//console.log(result);
-			//console.log(typeof(result));
+			console.log(result); // Using console due to winston not working with webpack
+			console.log(typeof(result));
 		})
 		.catch(function(error) {
 			console.log('This is my catch error: ' + error);
