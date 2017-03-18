@@ -17,6 +17,7 @@ module.exports = class CamperTable extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
+						{this.props.leaderboardRows}
 					</tbody>
 				</table>
 			</div>

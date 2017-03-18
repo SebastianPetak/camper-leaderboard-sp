@@ -1,6 +1,7 @@
 const React = require('react');
 import axios from 'axios';
 const CamperTable = require('../components/CamperTable');
+const _ = require('lodash/core');
 
 module.exports = class CamperLeaderboard extends React.Component {
 	constructor(props) {
@@ -25,10 +26,31 @@ module.exports = class CamperLeaderboard extends React.Component {
 	}
 
 	render() {
+		/*
+			If recentLeaderboard is empty, return null so camperTable renders without data.
+			Otherwise fill the table with the appropriate data from recentLeaderboard.
+		*/
+		let leaderboardRows;
+		if (_.isEmpty(this.state.recentLeaderboard)) {
+			leaderboardRows = null;
+		} else {
+			leaderboardRows = this.state.recentLeaderboard.map( (camperData, index) => {
+				return (
+					<tr key={index}>
+						<td>{index + 1}</td>
+						<td>{camperData.username}</td>
+						<td>{camperData.recent}</td>
+						<td>{camperData.alltime}</td>
+					</tr>
+				);
+			});
+		}
+
+
 		return (
 			<div className='container'>
 				<div className='row'>
-					<CamperTable />
+					<CamperTable leaderboardRows={leaderboardRows}/>
 				</div>
 			</div>
 		);
