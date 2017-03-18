@@ -1,7 +1,8 @@
 const React = require('react');
 import axios from 'axios';
-const CamperTable = require('../components/CamperTable');
 const _ = require('lodash/core');
+const LeaderboardHeading = require('../components/LeaderboardHeading');
+const CamperTable = require('../components/CamperTable');
 
 module.exports = class CamperLeaderboard extends React.Component {
 	constructor(props) {
@@ -49,6 +50,9 @@ module.exports = class CamperLeaderboard extends React.Component {
 
 		return (
 			<div className='container'>
+				<div className='row'>
+					<LeaderboardHeading />
+				</div>
 				<div className='row'>
 					<CamperTable leaderboardRows={leaderboardRows}/>
 				</div>
