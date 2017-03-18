@@ -5,15 +5,16 @@ const CamperTable = require('../components/CamperTable');
 module.exports = class CamperLeaderboard extends React.Component {
 	constructor(props) {
 		super(props);
-		this.State = {
+		this.state = {
 			recentLeaderboard: {}
 		};
 		let self = this;
 
+		// Get camper leaderboard data
 		axios.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
 		.then(function(result) {
 			self.setState({
-				recentLeaderboard: result
+				recentLeaderboard: result.data
 			});
 			console.log(result); // Using console due to winston not working with webpack
 			console.log(typeof(result));
@@ -25,8 +26,10 @@ module.exports = class CamperLeaderboard extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<CamperTable />
+			<div className='container'>
+				<div className='row'>
+					<CamperTable />
+				</div>
 			</div>
 		);
 	}
