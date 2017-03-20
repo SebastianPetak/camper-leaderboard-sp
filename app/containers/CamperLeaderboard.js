@@ -3,6 +3,7 @@ import axios from 'axios';
 const _ = require('lodash/core');
 const LeaderboardHeading = require('../components/LeaderboardHeading');
 const CamperTable = require('../components/CamperTable');
+const profilePicStyles = require('../styles/styles.js').profilePicStyles;
 
 module.exports = class CamperLeaderboard extends React.Component {
 	constructor(props) {
@@ -56,7 +57,12 @@ module.exports = class CamperLeaderboard extends React.Component {
 				return (
 					<tr key={index}>
 						<td>{index + 1}</td>
-						<td>{camperData.username}</td>
+						<td><img src={camperData.img}
+							alt={camperData.username + 'profile picture'}
+							style={profilePicStyles}
+							/>
+							{camperData.username}
+							</td>
 						<td>{camperData.recent}</td>
 						<td>{camperData.alltime}</td>
 					</tr>
