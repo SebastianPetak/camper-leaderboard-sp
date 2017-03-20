@@ -57,11 +57,14 @@ module.exports = class CamperLeaderboard extends React.Component {
 				return (
 					<tr key={index}>
 						<td>{index + 1}</td>
-						<td><img src={camperData.img}
+						<td>
+							<a href={'https://www.freecodecamp.com/' + camperData.username}>
+							<img src={camperData.img}
 							alt={camperData.username + 'profile picture'}
 							style={profilePicStyles}
 							/>
 							{camperData.username}
+							</a>
 							</td>
 						<td>{camperData.recent}</td>
 						<td>{camperData.alltime}</td>
