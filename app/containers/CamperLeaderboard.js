@@ -55,7 +55,7 @@ module.exports = class CamperLeaderboard extends React.Component {
 		} else {
 			leaderboardRows = this.state.leaderboard.map( (camperData, index) => {
 				return (
-					<tr key={index}>
+					<tr key={camperData.username}>
 						<td>{index + 1}</td>
 						<td>
 							<a href={'https://www.freecodecamp.com/' + camperData.username}>
