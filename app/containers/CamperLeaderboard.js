@@ -83,32 +83,29 @@ module.exports = class CamperLeaderboard extends React.Component {
 			});
 		}
 
-		// If promise for requesting the data is rejected, render this.
-		if (_.has(this.state.leaderboard, 'leaderboardError')) {
-			return (
-				<div>
-					Data is not available
-				</div>
-			);
-		} else {
-			return (
-				<div className='container'>
-					<div className='row'>
-						<div className='small-12 columns'>
-							<LeaderboardHeading />
-						</div>
-					</div>
-					<div className='row'>
-						<div className='small-12 columns'>
-							<CamperTable
-								leaderboardRows={leaderboardRows}
-								handleAllTimeClick={this.handleAllTimeClick}
-								getRecentData={this.getRecentData}
-							/>
-						</div>
+		return (
+			<div className='container'>
+				<div className='row'>
+					<div className='small-12 columns'>
+						<LeaderboardHeading />
 					</div>
 				</div>
-			);
-		}
+				<div className='row'>
+					<div className='small-12 columns'>
+					{
+						_.has(this.state.leaderboard, 'leaderboardError') ?
+						/* If promise for retrieving data was rejected render this */
+						<div style={{textAlign: 'center'}}> Data is not available </div> :
+						/* Otherwise render the data */
+						<CamperTable
+							leaderboardRows={leaderboardRows}
+							handleAllTimeClick={this.handleAllTimeClick}
+							getRecentData={this.getRecentData}
+						/>
+					}
+					</div>
+				</div>
+			</div>
+		);
 	}
 };
