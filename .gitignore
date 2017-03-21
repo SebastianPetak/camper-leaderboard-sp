@@ -20,4 +20,3 @@ build/Release
 .env
 
 node_modules
-dist
