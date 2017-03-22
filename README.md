@@ -7,12 +7,12 @@ Visit the application [here](https://camper-leaderboard-sp.herokuapp.com/)
 
   * __User Story:__ I can see how many brownie points they've earned in the past 30 days, and how many they've earned total.
 
-	* __User Story:__ I can toggle between sorting the list by how many brownie points they've earned in the past 30 days and by how many brownie points they've earned total.
+  * __User Story:__ I can toggle between sorting the list by how many brownie points they've earned in the past 30 days and by how many brownie points they've earned total.
 
 ## Installation
 
 1. Make sure you have [npm](https://www.npmjs.com/) installed.
-2. Navigate to the root directory of the application and run `npm install` to install the required modules. You should see a node_modules folder in the root directory.
+2. Navigate to the root directory of the application and run `npm install` to install the required modules. You should see a *node_modules* folder in the root directory.
 
 ## Usage
 
