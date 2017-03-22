@@ -4,7 +4,9 @@
   "description": "See a table of Free Code Camp campers who've earned the most brownie points",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bundle": "webpack -p",
+    "devServer": "webpack-dev-server",
+    "start": "node server.js"
   },
   "author": "Sebastian Petak",
   "license": "ISC",

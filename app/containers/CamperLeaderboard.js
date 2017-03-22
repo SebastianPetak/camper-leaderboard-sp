@@ -21,8 +21,14 @@ module.exports = class CamperLeaderboard extends React.Component {
 					leaderboard: result.data
 				});
 			})
-			.catch(function(error) {
-				console.log('This is my catch error: ' + error);
+			.catch(function() {
+				// If the promise is rejected, we will return a message saying that the
+				// data is unavailable.
+				self.setState({
+					leaderboard: {
+						leaderboardError: 'error'
+					}
+				});
 			});
 		};
 		// Get new data for when user clicks 'All time points'
@@ -33,8 +39,12 @@ module.exports = class CamperLeaderboard extends React.Component {
 					leaderboard: result.data
 				});
 			})
-			.catch(function(error) {
-				console.log('This is my catch error: ' + error);
+			.catch(function() {
+				self.setState({
+					leaderboard: {
+						leaderboardError: 'error'
+					}
+				});
 			});
 		};
 	}
@@ -46,16 +56,16 @@ module.exports = class CamperLeaderboard extends React.Component {
 
 	render() {
 		/*
-			If leaderboard is empty, return null so camperTable renders without data.
+			If leaderboard is empty, return null
 			Otherwise fill the table with the appropriate data from leaderboard.
 		*/
 		let leaderboardRows;
-		if (_.isEmpty(this.state.leaderboard)) {
+		if (_.isEmpty(this.state.leaderboard) || _.has(this.state.leaderboard, 'leaderboardError')) {
 			leaderboardRows = null;
 		} else {
 			leaderboardRows = this.state.leaderboard.map( (camperData, index) => {
 				return (
-					<tr key={index}>
+					<tr key={camperData.username}>
 						<td>{index + 1}</td>
 						<td>
 							<a href={'https://www.freecodecamp.com/' + camperData.username}>
@@ -82,11 +92,17 @@ module.exports = class CamperLeaderboard extends React.Component {
 				</div>
 				<div className='row'>
 					<div className='small-12 columns'>
+					{
+						_.has(this.state.leaderboard, 'leaderboardError') ?
+						/* If promise for retrieving data was rejected render this */
+						<div style={{textAlign: 'center'}}> Data is not available </div> :
+						/* Otherwise render the data */
 						<CamperTable
 							leaderboardRows={leaderboardRows}
 							handleAllTimeClick={this.handleAllTimeClick}
 							getRecentData={this.getRecentData}
 						/>
+					}
 					</div>
 				</div>
 			</div>
